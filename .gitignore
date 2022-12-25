@@ -1,0 +1,4 @@
+.idea/
+venv/
+address_book/.idea/
+*pyc

@@ -1,0 +1,14 @@
+{% extends 'addresses/base.html' %}
+
+{% block content %}
+    <center>
+        <div>
+            <h1>Calendar</h1>
+            <h2>{{ month }} {{ year }}</h2>
+
+            <br/><br/>
+            <div>{{ cal|safe }}</div>
+        </div>
+
+    </center>
+{% endblock %}
