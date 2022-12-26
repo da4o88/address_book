@@ -7,6 +7,7 @@ from datetime import datetime
 from .forms import ClientForm, AddressForm
 from .models import Address
 
+
 # Create your views here.
 
 
@@ -15,6 +16,13 @@ def show_address(request, address_id):
     return render(request, 'addresses/show_address.html', {
         "address": address,
     })
+
+
+def delete_address(request, address_id):
+    address = Address.objects.get(pk=address_id)
+    address.delete()
+    messages.success(request, "Address Deleted!!!")
+    return redirect('list_address')
 
 
 def update_address(request, address_id):
@@ -39,15 +47,30 @@ def list_address(request):
 
 def add_address(request):
     submitted = False
+    address_list = Address.objects.all()
     if request.method == 'POST':
         form = AddressForm(request.POST)
+
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/add_address?submitted=True')
+            street_name = form.cleaned_data['street_name']
+            city = form.cleaned_data['city']
+            zip_code = form.cleaned_data['zip_code']
+            country = form.cleaned_data['country']
+
+            for address in address_list:
+                if street_name == address.street_name and city == address.city and zip_code == address.zip_code \
+                        and country == address.country:
+                    messages.success(request, 'Address already exists!!')
+                    return redirect('list_address')
+            else:
+                form.save()
+                return HttpResponseRedirect('/add_address?submitted=True')
     else:
         form = AddressForm
         if 'submitted' in request.GET:
             submitted = True
+            messages.success(request, "Address was added successfully!!!")
+            return redirect('list_address')
 
     return render(request, 'addresses/add_address.html', {
         "form": form,

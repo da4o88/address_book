@@ -41,3 +41,4 @@ class ClientForm(ModelForm):
             "email_address": forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
             "phone": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
         }
+

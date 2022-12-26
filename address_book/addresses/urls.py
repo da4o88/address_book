@@ -7,4 +7,5 @@ urlpatterns = [
     path('list_address', views.list_address, name='list_address'),
     path('show_address/<address_id>', views.show_address, name='show_address'),
     path('update_address/<address_id>', views.update_address, name='update_address'),
+    path('delete_address/<address_id>', views.delete_address, name='delete_address'),
 ]

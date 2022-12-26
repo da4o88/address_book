@@ -25,7 +25,7 @@
                   <td>{{ address.country }}</td>
                   <td align="right">
                         <a href="{% url 'update_address' address.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
-                        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <a href="{% url 'delete_address' address.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                   </td>
                 </tr>
               </tbody>
