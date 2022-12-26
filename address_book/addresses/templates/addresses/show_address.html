@@ -1,23 +1,29 @@
 {% extends 'addresses/base.html' %}
 
 {% block content %}
-        <br/>
-        <div class="card">
-          <div class="card-header">
-              <strong>Address</strong>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ address }}</h5>
-            <p class="card-text">
-              <ul>
-                <li>{{ address.street_name }}</li>
-                <li>{{ address.city }}</li>
-                <li>{{ address.zip_code }}</li>
-                <li>{{ address.country }}</li>
-              </ul>
-              <br/>
-            </p>
-          </div>
-        </div>
+    <br/>
+    <div class="card">
+      <h5 class="card-header"><strong>Address</strong></h5>
+      <div class="card-body">
+        <h5 class="card-title">{{ address.street_name }} - {{ address.city }}</h5>
+        <p class="card-text">
+            <div class="container text-left">
+              <div class="row">
+
+                  <ul style="list-style: none;">
+                    <li><label class="label"><strong>Street Name:</strong></label>{{ address.street_name }}</li>
+                    <li><label class="label"><strong>City:</strong></label>{{ address.city }}</li>
+                    <li><label class="label"><strong>Zip Code:</strong></label>{{ address.zip_code }}</li>
+                    <li><label class="label"><strong>Country:</strong></label>{{ address.country }}</li>
+                </ul>
+
+              </div>
+            </div>
+            <a href="{% url 'update_address' address.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+            <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+            <br/>
+        </p>
+      </div>
+    </div>
 
 {% endblock %}
