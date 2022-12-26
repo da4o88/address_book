@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Client, Address
+from .models import Address, Client
 
 # Create a address and client forms
 
@@ -8,10 +8,9 @@ from .models import Client, Address
 class AddressForm(ModelForm):
     class Meta:
         model = Address
-        fields = ('street_name', 'street_number', 'city', 'zip_code', 'country')
+        fields = ('street_name', 'city', 'zip_code', 'country')
         labels = {
             "street_name": '',
-            "street_number": '',
             "city": '',
             "zip_code": '',
             "country": '',
@@ -19,8 +18,7 @@ class AddressForm(ModelForm):
 
         widgets = {
             "street_name": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Street Name'}),
-            "street_number": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Street Number'}),
-            "city": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'city'}),
+            "city": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
             "zip_code": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Zip Code'}),
             "country": forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Country'}),
         }

@@ -13,7 +13,7 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
-    fields = (('street_name', 'street_number'), 'city', 'zip_code', 'country')
-    list_display = ('street_name', 'city')
-    list_filter = ('street_name', 'city')
+    fields = ('street_name', 'city', 'zip_code', 'country')
+    list_display = ('street_name', 'city', 'country')
+    list_filter = ('street_name', 'city', 'country')
     ordering = ('street_name',)

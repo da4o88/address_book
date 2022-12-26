@@ -1,0 +1,23 @@
+{% extends 'addresses/base.html' %}
+
+{% block content %}
+        <br/>
+        <div class="card">
+          <div class="card-header">
+              <strong>Address</strong>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ address }}</h5>
+            <p class="card-text">
+              <ul>
+                <li>{{ address.street_name }}</li>
+                <li>{{ address.city }}</li>
+                <li>{{ address.zip_code }}</li>
+                <li>{{ address.country }}</li>
+              </ul>
+              <br/>
+            </p>
+          </div>
+        </div>
+
+{% endblock %}

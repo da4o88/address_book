@@ -1,0 +1,34 @@
+{% extends 'addresses/base.html' %}
+
+{% block content %}
+        <div>
+            <h1>All Address</h1>
+            <br/>
+            <table class="table table-striped table-hover table-bordered">
+
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Street Name</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Zip Code</th>
+                  <th scope="col">Country</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+              {% for address in address_list %}
+                <tr>
+                  <th scope="row">{{ address.id}}</th>
+                  <td><a href="{% url 'show_address' address.id %}">{{ address.street_name }}</a></td>
+                  <td>{{ address.city }}</td>
+                  <td>{{ address.zip_code }}</td>
+                  <td>{{ address.country }}</td>
+                  <td align="right">
+                        <a href="{% url 'update_address' address.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+                        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+            {% endfor %}
+            </table>
+{% endblock %}
