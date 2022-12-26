@@ -23,7 +23,7 @@ def update_address(request, address_id):
     if form.is_valid():
         form.save()
         return redirect('list_address')
-    return render(request, 'addresses/list_address.html', {
+    return render(request, 'addresses/update_address.html', {
         "address": address,
         "form": form,
     })
