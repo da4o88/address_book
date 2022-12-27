@@ -7,6 +7,8 @@ from datetime import datetime
 from .forms import ClientForm, AddressForm
 from .models import Address
 
+# Import Pagination Stuff
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -38,11 +40,28 @@ def update_address(request, address_id):
 
 
 def list_address(request):
-    address_list = Address.objects.all()
+    all_address = Address.objects.all()
 
     return render(request, 'addresses/list_address.html', {
-        "address_list": address_list,
+        "all_address": all_address,
     })
+
+
+def address_list(request):
+    address_to_list = Address.objects.all().order_by('street_name')
+
+    # Set up Pagination
+    p = Paginator(Address.objects.all(), 2)
+    page = request.GET.get('page')
+    page_address = p.get_page(page)
+    nums = "a" * page_address.paginator.num_pages
+
+    return render(request, 'addresses/list_address.html',
+                  {
+                      "address_to_list": address_to_list,
+                      'page_address': page_address,
+                      'nums': nums,
+                  })
 
 
 def add_address(request):
@@ -57,6 +76,7 @@ def add_address(request):
             zip_code = form.cleaned_data['zip_code']
             country = form.cleaned_data['country']
 
+            # Check if address is already in DB
             for address in address_list:
                 if street_name == address.street_name and city == address.city and zip_code == address.zip_code \
                         and country == address.country:
