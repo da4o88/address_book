@@ -67,9 +67,9 @@ def address_list(request):
 def add_address(request):
     submitted = False
     address_list = Address.objects.all()
+
     if request.method == 'POST':
         form = AddressForm(request.POST)
-
         if form.is_valid():
             street_name = form.cleaned_data['street_name']
             city = form.cleaned_data['city']
